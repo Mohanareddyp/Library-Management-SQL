@@ -1,26 +1,29 @@
-# Library Management System (SQL Version)
+# Library Management System (C Version)
 
-This project is a database-driven Library Management System, originally converted from a C program that used text files.  
-It demonstrates how file-based storage can be redesigned using **SQL schema** and queries.
+This is a **console-based Library Management System** written in C.  
+It allows adding, listing, removing, and issuing books using simple file handling (`books.txt` and `issue.txt`).
 
-## Features
-- Add new books  
-- List available books  
-- Delete books  
-- Issue books to students  
-- View issued books with student details  
+## 📌 Features
+- **Add Book** – Add new books with ID, title, author, and date of entry.  
+- **Books List** – Display all available books in tabular format.  
+- **Remove Book** – Delete a book record by its ID.  
+- **Issue Book** – Issue a book to a student by entering student details.  
+- **Issued Books List** – View all books issued along with student info and date.  
 
-## Database Schema
-- `Books` table → Stores book details (ID, Name, Author, Date Added)  
-- `IssuedBooks` table → Stores issued records linked to book IDs  
+## 📂 File Handling
+- `books.txt` → Stores all available book records.  
+- `issue.txt` → Stores issued book records with student details.  
+- `temp.txt` → Used internally when removing books.  
 
-## How to Use
-1. Import `library_management.sql` into MySQL/SQLite.  
-2. Run the provided queries to manage the library.  
+## ⚙️ How It Works
+- The system uses **C structures**:
+  - `struct books` – to store book details.  
+  - `struct student` – to store issued book and student details.  
+- Records are stored persistently in text files using `fwrite()` and `fread()`.  
+- The program runs in a menu-driven loop until the user exits.
 
-## Example Queries
-```sql
-INSERT INTO Books (id, bookName, authorName, addedDate)
-VALUES (1, 'C Programming', 'Dennis Ritchie', CURDATE());
-
-SELECT * FROM Books;
+## ▶️ How to Run
+1. Save the source file as `lib.c`.  
+2. Compile using:
+   ```bash
+   gcc lib.c -o library
